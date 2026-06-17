@@ -6,7 +6,7 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
   // CORS — permette al tuo sito GitHub Pages di chiamare questa funzione
-  res.setHeader('Access-Control-Allow-Origin', '*'); // sostituisci '*' con il tuo dominio in produzione
+  res.setHeader('Access-Control-Allow-Origin', 'https://hanamipress.xyz'); // sostituisci '*' con il tuo dominio in produzione
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
         currency: 'eur',
         product_data: {
           name: item.name,
-          images: item.image ? [`https://TUO-DOMINIO.github.io${item.image}`] : []
+          images: item.image ? [`https://hanamipress.xyz${item.image}`] : []
           // sostituisci TUO-DOMINIO con il tuo dominio GitHub Pages reale
         },
         unit_amount: Math.round(item.price * 100) // Stripe usa i centesimi
@@ -54,11 +54,11 @@ module.exports = async (req, res) => {
     }
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      payment_method_types: ['card', 'paypal'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: 'https://TUO-DOMINIO.github.io/successo.html',
-      cancel_url: 'https://TUO-DOMINIO.github.io/',
+      success_url: 'https://hanamipress.xyz/successo.html',
+      cancel_url: 'https://hanamipress.xyz',
       shipping_address_collection: {
         allowed_countries: ['IT', 'FR', 'DE', 'ES', 'AT', 'NL', 'BE', 'PT', 'US', 'GB']
         // aggiungi/rimuovi i paesi che spedisci
