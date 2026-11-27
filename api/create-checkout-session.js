@@ -14,26 +14,27 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
    Una voce per ogni `data-name` usato nei pulsanti del sito.
    - category: 'zine' oppure 'stampa' (cambia il costo di spedizione in Italia)
    - hand:     true se con questo prodotto si puo' scegliere la consegna a mano
-   - prices:   prezzi in euro accettati. Mettere il prezzo pieno E quello scontato
-               finche' lo sconto e' attivo; a sconto finito togliere quello scontato.
-               Qualsiasi altro prezzo viene rifiutato.
+   - prices:   prezzi in euro accettati (di norma uno solo: il prezzo del sito).
+               Se cambi un prezzo sul sito, cambialo anche qui. Per fare uno sconto
+               puoi mettere temporaneamente due valori (pieno e scontato), poi toglierne
+               uno. Qualsiasi altro prezzo viene rifiutato.
 
    Quando aggiungi un prodotto al sito, aggiungilo anche qui: se manca, il
    pagamento viene rifiutato. */
 const CATALOG = {
-  'Pony - Risograph A3':             { category: 'stampa', prices: [10, 15] },
+  'Pony - Risograph A3':             { category: 'stampa', prices: [15] },
   'Primavera 2025 - Risograph A4':   { category: 'stampa', prices: [10] },
-  'Blob Blob - Risograph 10x15':     { category: 'stampa', prices: [5, 7] },
+  'Blob Blob - Risograph 10x15':     { category: 'stampa', prices: [7] },
 
-  'Capsule Monsters (VERDE)':        { category: 'zine', prices: [5, 8] },
-  'Capsule Monsters (MINI ARTBOOK)': { category: 'zine', prices: [5, 8] },
-  'Rosacea':                         { category: 'zine', prices: [2, 4] },
-  'My Little Zine':                  { category: 'zine', prices: [1, 3] },
-  'Ora della pappa':                 { category: 'zine', prices: [3, 5] },
-  "E' l'ora della pappa":            { category: 'zine', prices: [3, 5] },
-  'Dark Magic Bros':                 { category: 'zine', prices: [3, 5] },
-  'Pixelgore':                       { category: 'zine', prices: [3, 5] },
-  'Pixelporn':                       { category: 'zine', prices: [3, 5] },
+  'Capsule Monsters (VERDE)':        { category: 'zine', prices: [8] },
+  'Capsule Monsters (MINI ARTBOOK)': { category: 'zine', prices: [8] },
+  'Rosacea':                         { category: 'zine', prices: [4] },
+  'My Little Zine':                  { category: 'zine', prices: [3] },
+  'Ora della pappa':                 { category: 'zine', prices: [5] },
+  "E' l'ora della pappa":            { category: 'zine', prices: [5] },
+  'Dark Magic Bros':                 { category: 'zine', prices: [5] },
+  'Pixelgore':                       { category: 'zine', prices: [5] },
+  'Pixelporn':                       { category: 'zine', prices: [5] },
   'Il posto delle vipere':           { category: 'zine', prices: [7] },
   'Nostalgia Miseria':               { category: 'zine', prices: [7] },
 
